@@ -29,4 +29,4 @@ The `Dockerfile` sets up a multi-stage build environment:
 To build the Docker image, run:
 
 ```sh
-docker buildx build --push --platform linux/amd64,linux/arm64 -t gitsid/grpc-go-base-builder:1.22 -t gitsid/grpc-go-base-builder:latest .
+docker buildx build --push --platform linux/amd64 -t gitsid/grpc-go-base-builder:1.22 -t gitsid/grpc-go-base-builder:latest .

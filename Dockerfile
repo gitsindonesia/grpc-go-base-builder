@@ -1,4 +1,4 @@
-FROM ubuntu:bionic AS builder
+FROM --platform=linux/amd64 ubuntu:bionic AS builder
 
 RUN apt-get update && \
     apt-get install -y \
@@ -9,10 +9,8 @@ RUN apt-get update && \
     wget \
     gnupg-agent
 
-ARG TARGETARCH
-
-RUN wget http://github.com/golang-migrate/migrate/releases/latest/download/migrate.linux-${TARGETARCH}.deb
-RUN dpkg -i migrate.linux-${TARGETARCH}.deb
+RUN wget http://github.com/golang-migrate/migrate/releases/latest/download/migrate.linux-amd64.deb
+RUN dpkg -i migrate.linux-amd64.deb
 RUN WAIT_FOR_VERSION=v2.2.3 && \
     wget -qO/bin/wait-for https://github.com/eficode/wait-for/releases/download/${WAIT_FOR_VERSION}/wait-for && \
     chmod +x /bin/wait-for
