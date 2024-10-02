@@ -9,8 +9,10 @@ RUN apt-get update && \
     wget \
     gnupg-agent
 
-RUN wget http://github.com/golang-migrate/migrate/releases/latest/download/migrate.linux-arm64.deb
-RUN dpkg -i migrate.linux-arm64.deb
+ARG TARGETARCH
+
+RUN wget http://github.com/golang-migrate/migrate/releases/latest/download/migrate.linux-${TARGETARCH}.deb
+RUN dpkg -i migrate.linux-${TARGETARCH}.deb
 RUN WAIT_FOR_VERSION=v2.2.3 && \
     wget -qO/bin/wait-for https://github.com/eficode/wait-for/releases/download/${WAIT_FOR_VERSION}/wait-for && \
     chmod +x /bin/wait-for
